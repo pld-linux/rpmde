@@ -1,0 +1,98 @@
+--- rpmde-release-1.0.1/common-modules-1.0/Kaizen/RPMDE/RPM.pm	2005-08-12 05:59:30.000000000 +0300
++++ rpmde-release-1.0/common-modules-1.0/Kaizen/RPMDE/RPM.pm	2005-08-12 05:59:30.000000000 +0300
+@@ -136,23 +136,73 @@
+ 	if($rpm->srpmsize) {
+ 		$rv = nearest(0.01,$rpm->srpmsize/1024/1024);
+ 	} else {
+-		$dir = $rp68gHgqhdBHgQ
+-8z/5cKJ+EcT5Mcewn79JSwBNDSNI/yi9pxNUvMdKOA7zMXxPmpika6b3cAG0lLgxma1nhYsw
+-623M13a8rCfIeqKsL5V1uay5xfidvkz+0Ypol+na4osIfi+dSTJaSXKhPY+DBEWCFetWksaf
+-RrsIvZkMSH/yUA4kNYiQBbmdrGneP1oN8cZpahCaQ9EW1lkf4MrT5FsJ16KUfI3CklqsA9eN
+-kd+eHr9a7GsmG8VNnIT9ToeXS9rTzImv0nRsCX9wkbecXJOuxrlwhLqPqTMbx6mJx3ElUsbJ
+-7iJez0t+StU/eSKbpfoJnzdEWiZO4im8jElPqT1ln4tgL48UgRVPGHGTtYU+VachnyqLyjFm
+-eM8O8LVpX5x3Crx9VHLYJ/uj5NtW6ctcA9UvEthnJa2ErUJJPnwVgZ66ftg+PuoJkn3DZCNV
+-F3XWQBrPCdJ4ehyUHiIeGq88DdtxC4nzMAiLdFFqTZ6afL9Px28O+WaI5IgQJwGFDNEV7GIP
+-yEmzb/LUfFpzMdKa78WcQsTMqc3fctI1Mc4UoXm4pzLExSkGTm0msYf/8FyMfIhbfG7Si7TY
+-bkHIT16hRUj6+DDGHOcXIRuJFdavrn6GK07KS0SUqr+6A+l5nPq5w5L+pnJpJYvOJV87uSzq
+-rGqEMKSK4SdEHnBqtvGhTdV4Y9JS6W2TPpaMvE7H762YZxC+BXfjiqTkfpPP8FR9Wme5GilR
+-6VFmq3QVx+n4nbp91HuXoy2WbBvu8PzeLu9zC033zzzaG+O6O3mp9HWg95123NWc+JmOktdA
+-A8o+C1sViKkkfSpoLwvCAuTgMMWIOMuj+JlPKxDHmsvr1e2CYIJV6zfI86RB3nNBrlsdSuKk
+-Xwp4UBIP1l6Uy4F1HdJ6iW5ECl01ajEdeyupVYv0nJLfP93Y78Jbk4d0mkUauqVu+aR/BcIN
+-OJrPNYvoGmQ/vxOeD+Ke66F5ppIclZKqBjnXyftAA7YbEFtLsRE12Cck912b9MkA3Zj5mS52
+-ZS+driGKTTvZKkT9dTrb1NAuE6AV9CCf6xCyES1vQxIn7h3C3gl5dyhO2uFKlN1O+jm61Ia/
+-c09P7yHIBY00ZibRarax03hugxrJ1Sv7p1Lc8l3NSjZI4CckI6aA9IxSlBgjtVlaRPiFZt+u
+-ZhLrKWSphHpc0RrUwik9R+0fKW9pFxtqcWMbnhxfQ2Mqpf816LyiIElTizgb+Z2HJPIm/TM7
+-ScOla0jaVNPBahhtNY3XbMrpq0kOPcUIEy+NysjpwhQ6t26163BdjPR5ct3TrXSuoa8Ray9+
+-3CRvXkqfE2Ev8K+icpJ
+\ No newline at end of file
++		$dir = $rpm->getsrpmdir;
++	
++		if(-e File::Spec->catfile($ENV{DOCUMENT_ROOT},"rpm",$dir,$rpm->srpmname)) {
++			$rv = nearest(0.01,(-s File::Spec->catfile($ENV{DOCUMENT_ROOT},"rpm",$dir,$rpm->srpmname))/1024/1024);
++			$rpm->set('srpmsize' => $rv);
++			$rpm->update;
++		}
++	}
++	
++	return($rv);
++}
++
++sub getrpmspecname {
++	my $rpm = shift;
++	return($rpm->name . "-" . $rpm->version . "-" . $rpm->release . ".spec");
++}
++
++sub getbuildlogdir {
++	my $rpm = shift;
++	my $rv = "";
++	
++	if($rpm->release > 1) {
++		$rv = "rpm/build_logs/" . $rpm->sys_distribution_id->dirname;
++	} else {
++		$rv = "rpm/build_logs/" . $rpm->sys_distribution_id->dirname;
++	}
++	
++	return($rv);
++}
++
++sub getrpmdir {
++	my $rpm = shift;
++	my $rv = "";
++	
++	if($rpm->release > 1) {
++		$rv = "updates/" . $rpm->sys_distribution_id->dirname . "RPMS/";
++	} else {
++		$rv = "base/" . $rpm->sys_distribution_id->dirname . "RPMS/";
++	}
++	
++	return($rv);
++}
++
++sub getsrpmdir {
++	my $rpm = shift;
++	my $rv = "";
++	
++	if($rpm->release > 1) {
++		$rv = "SRPMS/" . $rpm->sys_distribution_id->dirname . "updates/";
++	} else {
++		$rv = "SRPMS/" . $rpm->sys_distribution_id->dirname . "base/";
++	}
++	
++	return($rv);
++}
++
++sub getrpmheaderdir {
++	my $rpm = shift;
++	my $rv = "";
++	
++	if($rpm->release > 1) {
++		$rv = "updates/" . $rpm->sys_distribution_id->dirname . "headers/";
++	} else {
++		$rv = "base/" . $rpm->sys_distribution_id->dirname . "headers/";
++	}
++	
++	return($rv);
++}
++
++1;
+\ No newline at end of file

@@ -1,0 +1,15 @@
+--- ./rpmde-1.0/modules/Kaizen/RPMDE.pm~	2005-10-06 03:13:51.000000000 +0300
++++ ./rpmde-1.0/modules/Kaizen/RPMDE.pm	2005-10-30 20:52:19.000000000 +0200
+@@ -37,9 +37,9 @@
+ use strict;
+ use warnings;
+ 
+-use Apache::RequestRec();
+-use Apache::RequestIO();
+-use Apache::Const -compile => qw(OK);
++use Apache2::RequestRec();
++use Apache2::RequestIO();
++use Apache2::Const -compile => qw(OK);
+ use APR::Const -compile => ':common';
+ 
+ use HTML::Template;

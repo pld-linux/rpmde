@@ -13,3 +13,32 @@
  use APR::Const -compile => ':common';
  
  use HTML::Template;
+--- ./rpmde-1.0/modules/Kaizen/RPMDE.pm	2005-10-30 21:46:33.000000000 +0200
++++ /tmp/RPMDE.pm	2005-10-30 21:51:36.000000000 +0200
+@@ -39,7 +39,7 @@
+ 
+ use Apache2::RequestRec();
+ use Apache2::RequestIO();
+-use Apache2::Const -compile => qw(OK);
++use Apache2::Const -compile => qw(OK REDIRECT);
+ use APR::Const -compile => ':common';
+ 
+ use HTML::Template;
+@@ -174,7 +174,7 @@
+ 		}
+ 		$r->headers_out->set(Location=>$return);
+ 
+-		return Apache::REDIRECT;
++		return Apache2::Const::REDIRECT;
+ 	} elsif($return =~ /^IGNORE/) {
+ 		#do nothing
+ 	} else {
+@@ -186,7 +186,7 @@
+ 		$r->print($return);
+ 
+ 		#return ok
+-		return Apache::OK;
++		return Apache2::Const::OK;
+ 	}
+ 
+ }

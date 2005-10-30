@@ -2,7 +2,7 @@
 Summary:	RPM Development Environment
 Name:		rpmde
 Version:	1.0.1
-Release:	0.5
+Release:	0.12
 License:	GPL v2
 Group:		Applications
 Source0:	http://kaizen.macroelite.ca/pub/rpmde/%{name}-release-%{version}.tar.gz
@@ -10,6 +10,7 @@ Source0:	http://kaizen.macroelite.ca/pub/rpmde/%{name}-release-%{version}.tar.gz
 Source1:	%{name}.conf
 Patch0:		%{name}-mod_perl.patch
 Patch1:		%{name}-config.patch
+Patch2:		%{name}-corrupt.patch
 URL:		http://kaizen.macroelite.ca/index.pl/rpmde2
 BuildRequires:	rpm-perlprov >= 4.1-13
 BuildRequires:	rpmbuild(macros) >= 1.194
@@ -50,6 +51,7 @@ RPMDE Common Modules.
 %setup -q -n %{name}-release-%{version}
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -62,6 +64,7 @@ cp -a common-modules-1.0/Kaizen/RPMDE/* $RPM_BUILD_ROOT%{perl_vendorlib}/Kaizen/
 install -d $RPM_BUILD_ROOT/var/lib/rpmde/rpm/{build_logs,SOURCES,SPECS,TMPSRC}
 install -d $RPM_BUILD_ROOT/var/lib/rpmde/{rpm/{base,updates}/distrodir,SRPMS/distrodir/{base,updates}}
 install -d $RPM_BUILD_ROOT{%{_sysconfdir},%{_datadir}/%{name}}
+install -d $RPM_BUILD_ROOT/var/log/rpmde
 install %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/apache.conf
 
 cp -a rpmde-1.0/etc/* $RPM_BUILD_ROOT%{_sysconfdir}
@@ -104,6 +107,7 @@ fi
 %{perl_vendorlib}/Kaizen/RPMDE.pm
 /var/lib/rpmde
 %{_datadir}/%{name}
+%dir %attr(770,root,http) /var/log/rpmde
 
 %files common
 %defattr(644,root,root,755)

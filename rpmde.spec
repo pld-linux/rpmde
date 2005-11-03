@@ -1,5 +1,6 @@
 %include	/usr/lib/rpm/macros.perl
 Summary:	RPM Development Environment
+Summary(pl):	¦rodowisko do tworzenia RPM-ów
 Name:		rpmde
 Version:	1.0.1
 Release:	0.12
@@ -32,20 +33,39 @@ The RPMDE consists of two parts;
 - a back-end build daemon that handles the process of building the
   RPMs.
 
+%description -l pl
+RPM Development Environment (RPMDE) s³u¿y pomoc± zarz±dzaj±cym
+dystrybucjami Linuksa opartymi na pakietach RPM, zarz±dzaj±cym
+pakietami i testerom przy wykonywaniu pracy szybciej i wydajniej.
+
+RPMDE sk³ada siê z dwóch czê¶ci:
+- interfejsu frontendowego do zarz±dzania dystrybucj±
+- backendowygo demona buduj±cego obs³uguj±cego proces budowania
+  pakietów RPM.
+  
 %package daemon
-Summary:	daemon
+Summary:	RPMDE daemon
+Summary(pl):	Demon RPMDE
 Group:		Daemons
 
 %description daemon
 rpmde back-end build daemon that handles the process of building the
 RPMs.
 
+%description daemon -l pl
+Backendowy demon buduj±cy rpmde obs³uguj±cy proces budowania pakietów
+RPM.
+
 %package common
 Summary:	RPMDE Common Modules
-Group:		Development/Libraries
+Summary(pl):	Wspólne modu³y RPMDE
+Group:		Libraries
 
 %description common
 RPMDE Common Modules.
+
+%description common -l pl
+Wspólne modu³y RPMDE.
 
 %prep
 %setup -q -n %{name}-release-%{version}

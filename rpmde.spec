@@ -1,6 +1,6 @@
 %include	/usr/lib/rpm/macros.perl
 Summary:	RPM Development Environment
-Summary(pl):	¦rodowisko do tworzenia RPM-ów
+Summary(pl.UTF-8):   Åšrodowisko do tworzenia RPM-Ã³w
 Name:		rpmde
 Version:	1.0.1
 Release:	0.12
@@ -33,39 +33,39 @@ The RPMDE consists of two parts;
 - a back-end build daemon that handles the process of building the
   RPMs.
 
-%description -l pl
-RPM Development Environment (RPMDE) s³u¿y pomoc± zarz±dzaj±cym
-dystrybucjami Linuksa opartymi na pakietach RPM, zarz±dzaj±cym
+%description -l pl.UTF-8
+RPM Development Environment (RPMDE) sÅ‚uÅ¼y pomocÄ… zarzÄ…dzajÄ…cym
+dystrybucjami Linuksa opartymi na pakietach RPM, zarzÄ…dzajÄ…cym
 pakietami i testerom przy wykonywaniu pracy szybciej i wydajniej.
 
-RPMDE sk³ada siê z dwóch czê¶ci:
-- interfejsu frontendowego do zarz±dzania dystrybucj±
-- backendowygo demona buduj±cego obs³uguj±cego proces budowania
-  pakietów RPM.
+RPMDE skÅ‚ada siÄ™ z dwÃ³ch czÄ™Å›ci:
+- interfejsu frontendowego do zarzÄ…dzania dystrybucjÄ…
+- backendowygo demona budujÄ…cego obsÅ‚ugujÄ…cego proces budowania
+  pakietÃ³w RPM.
   
 %package daemon
 Summary:	RPMDE daemon
-Summary(pl):	Demon RPMDE
+Summary(pl.UTF-8):   Demon RPMDE
 Group:		Daemons
 
 %description daemon
 rpmde back-end build daemon that handles the process of building the
 RPMs.
 
-%description daemon -l pl
-Backendowy demon buduj±cy rpmde obs³uguj±cy proces budowania pakietów
+%description daemon -l pl.UTF-8
+Backendowy demon budujÄ…cy rpmde obsÅ‚ugujÄ…cy proces budowania pakietÃ³w
 RPM.
 
 %package common
 Summary:	RPMDE Common Modules
-Summary(pl):	Wspólne modu³y RPMDE
+Summary(pl.UTF-8):   WspÃ³lne moduÅ‚y RPMDE
 Group:		Libraries
 
 %description common
 RPMDE Common Modules.
 
-%description common -l pl
-Wspólne modu³y RPMDE.
+%description common -l pl.UTF-8
+WspÃ³lne moduÅ‚y RPMDE.
 
 %prep
 %setup -q -n %{name}-release-%{version}

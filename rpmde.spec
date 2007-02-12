@@ -1,6 +1,6 @@
 %include	/usr/lib/rpm/macros.perl
 Summary:	RPM Development Environment
-Summary(pl.UTF-8):   Środowisko do tworzenia RPM-ów
+Summary(pl.UTF-8):	Środowisko do tworzenia RPM-ów
 Name:		rpmde
 Version:	1.0.1
 Release:	0.12
@@ -45,7 +45,7 @@ RPMDE składa się z dwóch części:
   
 %package daemon
 Summary:	RPMDE daemon
-Summary(pl.UTF-8):   Demon RPMDE
+Summary(pl.UTF-8):	Demon RPMDE
 Group:		Daemons
 
 %description daemon
@@ -58,7 +58,7 @@ RPM.
 
 %package common
 Summary:	RPMDE Common Modules
-Summary(pl.UTF-8):   Wspólne moduły RPMDE
+Summary(pl.UTF-8):	Wspólne moduły RPMDE
 Group:		Libraries
 
 %description common

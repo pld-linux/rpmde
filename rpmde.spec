@@ -13,6 +13,7 @@ Patch0:		%{name}-mod_perl.patch
 Patch1:		%{name}-config.patch
 Patch2:		%{name}-corrupt.patch
 URL:		http://kaizen.macroelite.ca/index.pl/rpmde2
+BuildRequires:	migrate-to-webapps
 BuildRequires:	rpm-perlprov >= 4.1-13
 BuildRequires:	rpmbuild(macros) >= 1.194
 Requires:	apache >= 2.0

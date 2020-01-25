@@ -1,4 +1,3 @@
-%include	/usr/lib/rpm/macros.perl
 Summary:	RPM Development Environment
 Summary(pl.UTF-8):	Środowisko do tworzenia RPM-ów
 Name:		rpmde
